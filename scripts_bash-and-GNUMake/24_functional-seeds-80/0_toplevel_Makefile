@@ -1,0 +1,17 @@
+#Top-level makefile
+
+SUBJECTS=$(shell cat subjects)
+SHELL=/bin/bash
+export SHELL
+
+export ANTSPATH=/usr/local/ANTs-2.1.0-rc3/bin/
+export PATH:=${ANTSPATH}:$(PATH)
+
+.PHONY: all $(SUBJECTS)
+
+all: $(SUBJECTS)
+
+$(SUBJECTS):
+	$(MAKE) --directory=$@ $(TARGET)
+
+include make_tractography.mk
